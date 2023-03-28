@@ -1,0 +1,70 @@
+<AdicionarVisita>
+    FloatLayout:
+        canvas:
+            Rectangle:
+                size: self.size
+                pos: self.pos
+                source: "icones/img.png"
+        Label:
+            pos_hint: {"right": 1, "top": 1}
+            size_hint: 1, 0.1
+            text: "Adicionar visita"
+            id: id_visita
+        TextInput:
+            id: nome_visita
+            multiline: False
+            hint_text:"Nome Completo"
+            pos_hint:{"right": 0.9,"top": 0.87}
+            size_hint:0.8, 0.08
+        TextInput:
+            id: nome_responsavel
+            multiline: False
+            hint_text:"Responsavel"
+            pos_hint:{"right": 0.9,"top": 0.75}
+            size_hint:0.8, 0.08
+        TextInput:
+            id: nome_empresa
+            multiline: False
+            hint_text:"Empresa"
+            pos_hint:{"right": 0.9,"top": 0.63}
+            size_hint:0.8, 0.08
+
+        TextInput:
+            id: data_visita
+            multiline: False
+            input_type: 'number'
+            input_filter: 'int'
+            max_length: 19
+            hint_text:"Data da Visita : dd/mm/yyyy"
+            pos_hint:{"right": 0.9,"top": 0.75}
+            size_hint:0.8, 0.08
+            input_filter: lambda text, from_undo: app.banco.insert_text(text)
+            #input_filter: lambda text, from_undo: app.format_date(text)
+
+
+        LabelButton:
+            canvas.before:
+                Rectangle:
+                    pos:self.pos
+                    size:self.size
+                    #source:"icones/botao.png" if self.state == "normal" else "icones/botao_apertado.png"
+            #on_release:app.banco.criar_visita(data_visita.text)
+
+            text: 'Adicionar'
+            pos_hint:{"right": 0.85,"top": 0.35}
+            size_hint:0.7, 0.19
+
+        FloatLayout:
+            pos_hint: {"right": 1,"top": 0.12}
+            size_hint: 1, 0.12
+            canvas:
+                Color:
+                    rgb:utils.get_color_from_hex("#400450")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            ImageButton:
+                pos_hint:{"right":0.2, "top":0.9}
+                size_hint:0.2,0.8
+                source:"icones/voltar.png"
+                on_release: app.mudar_tela("homepage")

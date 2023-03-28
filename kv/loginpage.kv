@@ -1,0 +1,56 @@
+<LoginPage>:
+    FloatLayout:
+        canvas:
+            Rectangle:
+                size: self.size
+                pos: self.pos
+                source: "icones/img.png"
+        Label:
+            text:"CONTROLE [color=#3809FF] DE VISITA[/color]"
+            bold: True
+            markup: True
+            pos_hint:{"right": 0.9,"top": 0.9}
+            size_hint:0.8, 0.2
+        TextInput:
+            id: user
+            hint_text:"Usuario"
+            pos_hint:{"right": 0.9,"top": 0.75}
+            size_hint:0.8, 0.08
+        TextInput:
+            id: senha
+            password: True
+            hint_text:"Senha"
+            pos_hint:{"right": 0.9,"top": 0.59}
+            size_hint:0.8, 0.08
+        Label:
+            id: msg_login
+            text: "Faça seu login"
+            bold: True
+            markup: True
+            pos_hint:{"right": 0.9,"top": 0.45}
+            size_hint:0.8, 0.1
+
+        #BOTAO LOGIN
+        LabelButton:
+            canvas.before:
+                Rectangle:
+                    pos:self.pos
+                    size:self.size
+                    source:"icones/botao.png" if self.state == "normal" else "icones/botao_apertado.png"
+            on_release:app.banco.autenticar_usuario(user.text, senha.text)
+            text: "Login"
+            pos_hint:{"right": 0.85,"top": 0.35}
+            size_hint:0.7, 0.19
+
+
+        #BOTAO CRIAR CONTA
+        #LabelButton:
+         #   canvas.before:
+          #      Rectangle:
+           #         pos:self.pos
+            #        size:self.size
+             #       source:"icones/botao.png" if self.state == "normal" else "icones/botao_apertado.png"
+            #on_release:print("criarconta")
+            #text: "Criar conta"
+            #pos_hint:{"right": 0.75,"top": 0.22}
+            #size_hint:0.5, 0.19

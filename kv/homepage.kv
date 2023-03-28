@@ -1,0 +1,53 @@
+<HomePage>:
+    FloatLayout:
+        canvas:
+            Rectangle:
+                size: self.size
+                pos: self.pos
+                source: "icones/img.png"
+        Label:
+            canvas.before:
+                Rectangle:
+                    pos:self.pos
+                    size:self.size
+                    source:"icones/botao_fino.png"
+            pos_hint: {"right": 0.85, "top": 0.95}
+            size_hint: 0.75, 0.2
+            bold:True
+            text: "Total de Visitas : 5"
+            id: Label_visitas
+            markup:True
+        #lista de visitas
+        ScrollView:
+            pos_hint:{"right":1, "top":0.75}
+            size_hint:1, 0.9
+            GridLayout:
+                cols: 1
+                id:lista_visita
+
+                size_hint_y: None
+                height: self.minimum_height
+                row_default_height: "90dp"
+                row_force_default: True
+
+        #3 botoes voltar
+        GridLayout:
+            rows:1
+            pos_hint: {"right": 1,"top": 0.12}
+            size_hint: 1, 0.12
+            canvas:
+                Color:
+                    rgb:utils.get_color_from_hex("#400450")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+            ImageButton:
+                source:"icones/add.png"
+                on_release: app.mudar_tela("adicionarvisita")
+            ImageButton:
+                source:"icones/editar1.png"
+                on_release: app.mudar_tela("editarvisita")
+            ImageButton:
+                source:"icones/settings.png"
+                on_release: app.mudar_tela("ajustespage")
